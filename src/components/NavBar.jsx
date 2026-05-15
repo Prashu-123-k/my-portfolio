@@ -62,7 +62,7 @@ const navItems = [
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center shrink-0">
-            <a href="/" className="text-2xl font-bold text-white">
+            <a href="#home" className="text-2xl font-bold text-white">
               <img src={logo} alt="Logo" className="h-7 opacity-95" />
             </a>
           </div>
