@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo1.png";
 
@@ -22,6 +23,21 @@ const navItems = [
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen);
   };
+
+  const closeMobileMenu = () => setMobileDrawerOpen(false);
+
+  const handleMobileNavClick = () => {
+    closeMobileMenu();
+  };
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = mobileDrawerOpen ? "hidden" : previousOverflow;
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileDrawerOpen]);
 
   // scroll logic (same)
   useEffect(() => {
@@ -54,7 +70,7 @@ const navItems = [
 
   return (
     <nav
-      className={`sticky top-0 z-50 px-4 sm:px-6 lg:px-10 pt-4 text-white transition-transform duration-500 ${
+      className={`sticky top-0 z-50 px-4 sm:px-6 lg:px-10 py-3 bg-[#050505]/80 backdrop-blur-md border-b border-white/5 text-white transition-transform duration-500 ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       }`}
     >
@@ -102,11 +118,12 @@ const navItems = [
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden md:flex flex-col justify-end">
+          <div className="lg:hidden flex items-center justify-end">
             <button
               onClick={toggleNavbar}
-              className="rounded-full border border-white/20 bg-black/30 p-2 backdrop-blur-md"
-              aria-label="Toggle navigation menu"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white backdrop-blur-md transition hover:bg-black/50 active:scale-95"
+              aria-label={mobileDrawerOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileDrawerOpen}
             >
               {mobileDrawerOpen ? <X /> : <Menu />}
             </button>
@@ -114,28 +131,54 @@ const navItems = [
         </div>
 
         {/* Mobile Drawer */}
-        {mobileDrawerOpen && (
-          <div className="fixed inset-0 z-20 bg-black/95 w-full p-12 flex flex-col justify-center items-center lg:hidden">
-            <ul>
-              {navItems.map((item, index) => (
-                <li key={index} className="py-4">
-                  <a href={item.href} onClick={() => setMobileDrawerOpen(false)}>
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+        {typeof document !== "undefined" && createPortal(
+          <div className="lg:hidden">
+            <div
+              className={`fixed inset-0 z-[100] bg-black/60 backdrop-blur-[2px] transition-opacity duration-200 ${
+                mobileDrawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+              }`}
+              onClick={closeMobileMenu}
+              aria-hidden={!mobileDrawerOpen}
+            />
 
-            <div className="flex space-x-6 mt-6">
-              <a
-                href="#contact"
-                className="py-4 px-4 border bg-linear-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63] rounded-md transition font-semibold"
-              >
-                Get In Touch 
-              </a>
+            <div
+              className={`fixed inset-x-0 top-0 z-[110] flex justify-center px-4 pt-4 transition-transform duration-300 ${
+                mobileDrawerOpen ? "translate-y-0" : "-translate-y-full"
+              }`}
+            >
+              <div className="w-full max-w-md overflow-hidden rounded-3xl border border-white/10 bg-[#050505]/95 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.3em] text-gray-400">Navigation</p>
+                  <p className="mt-1 text-sm text-white/85">Jump to a section</p>
+                </div>
+                <button
+                  onClick={closeMobileMenu}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 active:scale-95"
+                  aria-label="Close navigation menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
 
+              <ul className="max-h-[72vh] overflow-y-auto px-4 py-4">
+                {navItems.map((item, index) => (
+                  <li key={index} className="mb-3 last:mb-0">
+                    <a
+                      href={item.href}
+                      onClick={handleMobileNavClick}
+                      className="flex items-center justify-between rounded-2xl border border-white/8 bg-white/3 px-4 py-4 text-base font-medium text-white transition hover:bg-white/6 active:scale-[0.99]"
+                    >
+                      <span>{item.label}</span>
+                      <span className="text-white/35">→</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </div>,
+        document.body
         )}
       </div>
     </nav>

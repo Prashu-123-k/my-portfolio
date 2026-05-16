@@ -98,13 +98,13 @@ const Home = React.forwardRef((props, ref) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
           >
-            <h1 className="text-[3rem] sm:text-[4rem] lg:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white mb-7 drop-shadow-lg">
+            <h1 className="text-[2.25rem] min-[380px]:text-[2.75rem] sm:text-[4rem] lg:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white mb-5 sm:mb-7 drop-shadow-lg">
               I Craft Seamless <br className="hidden md:block"/>
               <span className="text-gray-200">& Scalable Apps</span>
             </h1>
             
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-[0.65rem] sm:text-xs font-semibold text-gray-400 uppercase tracking-[0.2em]">
-              <span className="inline-flex items-center min-w-[20ch] normal-case tracking-[0.08em] text-gray-300">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.65rem] sm:text-xs font-semibold text-gray-400 uppercase tracking-[0.2em]">
+              <span className="inline-flex items-center min-w-[15ch] sm:min-w-[20ch] normal-case tracking-[0.08em] text-gray-300 break-all sm:break-normal">
                 {typedRole}
                 <span className="ml-1 text-gray-400 animate-pulse">|</span>
               </span>

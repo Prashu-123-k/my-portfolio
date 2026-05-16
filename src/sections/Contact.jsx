@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
 
-const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-if (emailjsPublicKey) {
-  emailjs.init({ publicKey: emailjsPublicKey });
-}
+const web3formsKey = "de6767f2-88e2-4424-84d6-06434dfc8579";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,36 +24,36 @@ const Contact = () => {
     setIsSending(true);
     setStatus({ type: "", message: "" });
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-
-    if (!serviceId || !templateId || !emailjsPublicKey) {
-      setStatus({
-        type: "error",
-        message: "Email service is not configured yet. Please add the EmailJS environment variables.",
-      });
+    // Use Web3Forms for submissions
+    if (!web3formsKey) {
+      setStatus({ type: "error", message: "Form service is not configured. Please set VITE_WEB3FORMS_ACCESS_KEY." });
       setIsSending(false);
       return;
     }
 
     try {
-      await emailjs.send(serviceId, templateId, {
-        from_name: formData.name,
-        email: formData.email,
-        from_email: formData.email,
-        message: formData.message,
-        reply_to: formData.email,
-        to_email: "chanduvinnakota26@gmail.com",
+      const fd = new FormData();
+      fd.append("access_key", web3formsKey);
+      fd.append("name", formData.name);
+      fd.append("email", formData.email);
+      fd.append("message", formData.message);
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: fd,
       });
 
-      setStatus({ type: "success", message: "Message sent successfully." });
-      setFormData({ name: "", email: "", message: "" });
+      const data = await res.json();
+      if (data.success) {
+        setStatus({ type: "success", message: "Message sent successfully." });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        console.error("Web3Forms error:", data);
+        setStatus({ type: "error", message: data.message || "Failed to send message." });
+      }
     } catch (error) {
-      console.error("EmailJS send failed:", error);
-      setStatus({
-        type: "error",
-        message: error?.text || error?.message || "Failed to send message. Please try again later.",
-      });
+      console.error("Web3Forms send failed:", error);
+      setStatus({ type: "error", message: "Failed to send message. Please try again later." });
     } finally {
       setIsSending(false);
     }
@@ -96,7 +91,7 @@ const Contact = () => {
                 <p className="text-sm text-[#C0C5CE] uppercase tracking-wider">Email</p>
                 <a
                   href="mailto:chanduvinnakota26@gmail.com"
-                  className="text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors"
+                  className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
                   chanduvinnakota26@gmail.com
                 </a>
@@ -113,7 +108,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/sai-chandra-vinnakota"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors"
+                  className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
                   linkedin.com/in/saichandravinnakota
                 </a>
@@ -130,7 +125,7 @@ const Contact = () => {
                   href="https://github.com/saichandrav"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors"
+                  className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
                   github.com/saichandrav
                 </a>
@@ -207,7 +202,7 @@ const Contact = () => {
           <button
             type="submit"
             disabled={isSending}
-            className="w-full md:w-auto px-46 py-3 rounded-full font-medium text-[#1F1F1F] bg-white hover:bg-[#dedcd9] cursor-pointer transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full md:w-auto px-8 md:px-16 py-3 rounded-full font-medium text-[#1F1F1F] bg-white hover:bg-[#dedcd9] cursor-pointer transition-colors disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSending ? "Sending..." : "Send Message"}
           </button>
