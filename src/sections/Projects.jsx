@@ -13,7 +13,7 @@ const projectCards = [
     techStack: ["React", "TypeScript", "Node.js", "MongoDB"],
     image: projectImage,
     liveLink: "https://ratnamayuri.live",
-    codeLink: "https://github.com/saichandrav/RatnaMayuriwebmain",
+    codeLink: "https://github.com/Prashu-123-k/RatnaMayuriwebmain",
   },
 ];
 

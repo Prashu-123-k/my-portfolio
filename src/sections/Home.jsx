@@ -8,17 +8,17 @@ const JOB_ROLES = ["Software Engineer", "MERN Stack Developer", "AI Enthusiast"]
 const SOCIAL_LINKS = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/sai-chandra-vinnakota/",
+    href: "https://www.linkedin.com/in/prasanth-k-06281a325/",
     Icon: FaLinkedinIn,
   },
   {
     label: "GitHub",
-    href: "https://github.com/saichandrav",
+    href: "https://github.com/Prashu-123-k",
     Icon: FaGithub,
   },
   {
     label: "LeetCode",
-    href: "https://leetcode.com/u/chanduvk/",
+    href: "https://leetcode.com/u/Konakanchi_Prasanth/",
     Icon: SiLeetcode,
   },
 ];
@@ -78,7 +78,7 @@ const Home = React.forwardRef((props, ref) => {
             <div className="absolute inset-0 bg-black/40 z-10"></div>
             <img
               src={avatar}
-              alt="Sai Chandra"
+              alt="Prasanth"
               className="h-[60vh] md:h-[80vh] w-auto object-contain grayscale-[1] contrast-[1.4] brightness-175 opacity-80"
               style={{
                 WebkitMaskImage: "radial-gradient(ellipse at center, black 40%, transparent 70%)",

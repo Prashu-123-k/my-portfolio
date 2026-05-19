@@ -5,7 +5,7 @@ import { FaQuoteLeft } from "react-icons/fa6";
 const testimonials = [
   {
     quote:
-      "Sai brings clarity to chaos. Our roadmap is very fasinating and his ui creativity and vision hits different",
+      "Brings clarity to chaos. Our roadmap is very fascinating and UI creativity and vision hit different",
     name: "K Prasanth",
     role: "frontend developer",
   },

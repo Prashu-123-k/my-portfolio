@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MdEmail } from "react-icons/md";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
 
-const web3formsKey = "de6767f2-88e2-4424-84d6-06434dfc8579";
+const web3formsKey = "6569b171-a47c-4972-a01e-1b7e2fc34328";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -90,10 +90,10 @@ const Contact = () => {
               <div>
                 <p className="text-sm text-[#C0C5CE] uppercase tracking-wider">Email</p>
                 <a
-                  href="mailto:chanduvinnakota26@gmail.com"
+                  href="mailto:kprasanth119951@gmail.com"
                   className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
-                  chanduvinnakota26@gmail.com
+                  kprasanth119951@gmail.com
                 </a>
               </div>
             </div>
@@ -105,12 +105,12 @@ const Contact = () => {
               <div>
                 <p className="text-sm text-[#C0C5CE] uppercase tracking-wider">LinkedIn</p>
                 <a
-                  href="https://www.linkedin.com/in/sai-chandra-vinnakota"
+                  href="https://www.linkedin.com/in/prasanth-k-06281a325/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
-                  linkedin.com/in/saichandravinnakota
+                  linkedin.com/in/prasanth-k-06281a325
                 </a>
               </div>
             </div>
@@ -122,12 +122,12 @@ const Contact = () => {
               <div>
                 <p className="text-sm text-[#C0C5CE] uppercase tracking-wider">GitHub</p>
                 <a
-                  href="https://github.com/saichandrav"
+                  href="https://github.com/Prashu-123-k"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[15px] sm:text-lg text-[#C2A878] hover:text-[#A38B5C] transition-colors break-all"
                 >
-                  github.com/saichandrav
+                  github.com/Prashu-123-k
                 </a>
               </div>
             </div>

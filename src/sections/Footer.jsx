@@ -16,8 +16,8 @@ import {
  * - Add/remove items if you want more or fewer social platforms
  */
 const socials = [
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/sai-chandra-vinnakota/" },
-  { Icon: FaGithub, label: "GitHub", href: "https://github.com/saichandrav" },
+  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/prasanth-k-06281a325/" },
+  { Icon: FaGithub, label: "GitHub", href: "https://github.com/Prashu-123-k" },
 ];
 
 /**
@@ -70,7 +70,7 @@ const Footer = () => {
               textShadow: "0 2px 18px rgba(0,0,0,0.45)",
             }}
           >
-            SAI CHANDRA
+            PRASANTH
           </h1>
         </div>
 
@@ -113,7 +113,7 @@ const Footer = () => {
         {/* --- Copyright / Trademark --- */}
         {/* Auto-updates year dynamically */}
         <p className="text-xs text-gray-400">
-          © {new Date().getFullYear()} SaiChandra . All rights reserved.
+          © {new Date().getFullYear()} Prasanth . All rights reserved.
         </p>
       </motion.div>
     </footer>

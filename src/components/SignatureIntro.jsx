@@ -27,7 +27,7 @@ const SignatureIntro = ({ onComplete }) => {
   return (
     <div
       className={`signature-intro ${isClosing ? 'signature-intro-closing' : ''}`}
-      aria-label="Chandu signature introduction animation"
+      aria-label="Prasanth signature introduction animation"
       role="presentation"
     >
       <div className="signature-noise" aria-hidden="true" />
@@ -45,7 +45,7 @@ const SignatureIntro = ({ onComplete }) => {
           aria-hidden="true"
         >
           <text x="49%" y="62%" textAnchor="middle" className="signature-script-draw">
-            Chandu
+            Prasanth
           </text>
           <path
             className="signature-stroke signature-stroke-flourish"
