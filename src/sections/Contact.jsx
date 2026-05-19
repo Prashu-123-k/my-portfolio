@@ -37,6 +37,9 @@ const Contact = () => {
       fd.append("name", formData.name);
       fd.append("email", formData.email);
       fd.append("message", formData.message);
+      fd.append("subject", `New portfolio message from ${formData.name}`);
+      fd.append("from_name", "Prasanth Portfolio Contact Form");
+      fd.append("replyto", formData.email);
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
